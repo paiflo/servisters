@@ -9,17 +9,15 @@
  *   }
  * ]
  */
-const map = require("../../db/mapDB");
-const {WebApiType,WebApi,FIELD} = require("../../../api");
+
 const emitter = require("../../emitter");
 const {device_id} = require("../../../config");
+const {tools:{id}} = require("../../../utils");
+const {WebApiType} = require("../../../api");
 
 module.exports = (io,socket)=>{
     return {
         install:()=>{
-            emitter.on(WebApiType.BROADCAST,(eventName,pack)=>{
-                socket.emit(eventName,pack);
-            })
             socket.onAny((eventName, pack) => {
                 // console.log('onAny',eventName);
             });
@@ -29,13 +27,15 @@ module.exports = (io,socket)=>{
                 // console.log('c send',eventName,origin,sid);
             });
             socket.prependAny((eventName, pack) => {
-                const {sid,rid,event,origin,field,targets} = pack;
-                if(!map.has(sid)){
-                    WebApi.systemBroadcast(eventName,pack);
-                    emitter.emit(eventName,pack);
-                }
+                // const {sid,rid,event,origin,field,targets} = pack;
+                // if(!map.has(sid)){
+                //     WebApi.systemBroadcast(eventName,pack);
+                //     emitter.emit(eventName,pack);
+                // }
+                console.log('pA',eventName);
             });
             socket.prependAnyOutgoing((eventName, pack) => {
+                console.log('pO',eventName);
                 // console.log(`prependAnyOutgoing ${eventName}`);
             });
         },
@@ -43,7 +43,7 @@ module.exports = (io,socket)=>{
             {
                 path:"connect",
                 handle:(res,req)=>{
-                    console.log('连接成功');
+                    console.log('服务节点连接成功');
                     // WebApi.serviceSearch();
                 }
             },

@@ -17,6 +17,7 @@ const {device_id,link} = require("../../config");
 
 module.exports = (namespace="",ref=(client,socket)=>{})=>{
     if(link){
+        console.log(`${link}/${namespace}`);
         const socket = client(`${link}/${namespace}`,{
             auth:{
                 device_id
