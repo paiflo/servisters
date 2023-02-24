@@ -152,11 +152,11 @@ async function confirmServiceSearch(field){
     // systemOnCall({targets:[targets[targets.length-1]]});
 // },"45");
 
-// port=="10006"&&setInterval(()=>{
-//     const targets = Object.keys(nodes);
-//     console.log('\x1b[31m',device_id,'发送消息',"\x1b[0m");
-//     systemOnCall({targets:[targets[targets.length-1]]});
-// },2000);
+port=="10006"&&setInterval(()=>{
+    const targets = Object.keys(nodes);
+    console.log('\x1b[31m',device_id,'发送消息',"\x1b[0m");
+    systemOnCall({targets:[targets[targets.length-1]]});
+},2000);
 
 async function waitAckRecive(sid){
     return await new Promise(async resolve=>{

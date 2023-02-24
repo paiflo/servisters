@@ -4,6 +4,7 @@ const route = require("./route");
 const {tools:{install}} = require("../../../utils");
 
 const onConnection = (socket) => {
+    console.log(233);
     install([route],server,socket);
 }
 

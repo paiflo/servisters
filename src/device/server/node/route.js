@@ -19,7 +19,7 @@ module.exports = (io,socket)=>{
     return {
         install:()=>{
             socket.onAny((eventName, pack) => {
-                console.log('onAny',eventName);
+                // console.log('onAny',eventName);
             });
             socket.onAnyOutgoing((eventName, pack) => {
                 // const {sid,origin} = pack;
@@ -35,7 +35,7 @@ module.exports = (io,socket)=>{
                 // }
             });
             socket.prependAnyOutgoing((eventName, pack) => {
-                
+                console.log(eventName);
             });
         }
     }

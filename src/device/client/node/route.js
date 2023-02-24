@@ -9,11 +9,10 @@
  *   }
  * ]
  */
-
-const emitter = require("../../emitter");
-const {device_id} = require("../../../config");
-const {tools:{id}} = require("../../../utils");
-const {WebApiType} = require("../../../api");
+// const map = require("../../db/mapDB");
+// const {WebApiType,WebApi,FIELD} = require("../../../api");
+// const emitter = require("../../emitter");
+// const {device_id} = require("../../../config");
 
 module.exports = (io,socket)=>{
     return {
@@ -27,31 +26,23 @@ module.exports = (io,socket)=>{
                 // console.log('c send',eventName,origin,sid);
             });
             socket.prependAny((eventName, pack) => {
-                // const {sid,rid,event,origin,field,targets} = pack;
-                // if(!map.has(sid)){
-                //     WebApi.systemBroadcast(eventName,pack);
-                //     emitter.emit(eventName,pack);
-                // }
-                console.log('pA',eventName);
+                console.log(eventName);
             });
             socket.prependAnyOutgoing((eventName, pack) => {
-                console.log('pO',eventName);
-                // console.log(`prependAnyOutgoing ${eventName}`);
+                console.log(`prependAnyOutgoing ${eventName}`);
             });
         },
         router:[
             {
                 path:"connect",
                 handle:(res,req)=>{
-                    console.log('服务节点连接成功');
-                    // WebApi.serviceSearch();
+                    console.log('连接成功');
                 }
             },
             {
                 path:"reconnect",
                 handle:(res,req)=>{
                     console.log('重新连接');
-                    // WebApi.serviceSearch();
                 }
             }
         ]
